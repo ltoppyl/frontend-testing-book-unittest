@@ -39,7 +39,7 @@ describe("数値の検証", () => {
     expect(value).toBeLessThanOrEqual(4); // 4 <= 4
   });
   test("小数計算は正確ではない", () => {
-    expect(0.1 + 0.2).not.toBe(0.3);
+    expect(0.1 + 0.2).not.toBe(0.3); // Received: 0.30000000000000004
   });
   test("小数計算の指定桁までを比較する", () => {
     expect(0.1 + 0.2).toBeCloseTo(0.3); // デフォルトは 2桁
@@ -56,8 +56,10 @@ describe("文字列の検証", () => {
     expect(str).toEqual("こんにちは世界");
   });
   test("toHaveLength", () => {
+    expect(str.length).toBeGreaterThanOrEqual(5); // 文字数が5文字以上であることを確認
     expect(str).toHaveLength(7);
     expect(str).not.toHaveLength(8);
+    expect(str.length).toBeLessThanOrEqual(10); // 文字数が10文字以下であることを確認
   });
   test("toContain", () => {
     expect(str).toContain("世界");
